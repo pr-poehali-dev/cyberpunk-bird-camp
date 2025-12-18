@@ -43,10 +43,10 @@ export default function Index() {
   ];
 
   const galleryImages = [
-    { title: 'VR Зона', description: 'Погружение в виртуальные миры' },
-    { title: 'Робототехника', description: 'Создание будущего своими руками' },
-    { title: 'Киберспорт', description: 'Турниры и командные баталии' },
-    { title: 'Coding Lab', description: 'Программирование нового поколения' }
+    { title: 'VR Зона', description: 'Погружение в виртуальные миры', image: 'https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/5246572e-dd23-4cc5-bb3f-9c8434fea5b0.jpg' },
+    { title: 'Робототехника', description: 'Создание будущего своими руками', image: 'https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/70648a49-ea92-4704-9056-affbe2af7ab0.jpg' },
+    { title: 'Киберспорт', description: 'Турниры и командные баталии', image: 'https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/7e48fc2e-a6a3-49d2-8dbb-aede6b211f66.jpg' },
+    { title: 'Территория лагеря', description: 'Современный tech-кампус', image: 'https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/c767f53f-1e80-4e40-b6f2-ceda8d9e35d8.jpg' }
   ];
 
   const scrollToSection = (id: string) => {
@@ -59,8 +59,8 @@ export default function Index() {
       <nav className="fixed top-0 w-full z-50 bg-[#0a0a0f]/90 backdrop-blur-lg border-b border-cyan-500/30">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Icon name="Rocket" className="text-cyan-400" size={32} />
+            <div className="flex items-center gap-3">
+              <img src="https://cdn.poehali.dev/files/remixed_784b6e57c32c11f09c7ae6378db1d023_776274458_generation_0.jpg" alt="Sokol Logo" className="w-12 h-12 object-contain" />
               <h1 className="text-2xl font-bold neon-glow text-cyan-400">СОКОЛ</h1>
             </div>
             <div className="hidden md:flex gap-6">
@@ -202,10 +202,12 @@ export default function Index() {
                 key={idx}
                 className="relative group overflow-hidden rounded-lg border-2 border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 aspect-square cursor-pointer"
               >
+                <img 
+                  src={img.image} 
+                  alt={img.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 group-hover:opacity-75 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Icon name="Image" className="text-cyan-400/50 group-hover:scale-110 transition-transform" size={64} />
-                </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <h3 className="text-xl font-bold text-cyan-400 mb-1">{img.title}</h3>
                   <p className="text-sm text-gray-300">{img.description}</p>
@@ -291,8 +293,8 @@ export default function Index() {
 
       <footer className="py-12 border-t border-cyan-500/30 bg-[#0a0a0f]/50">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Icon name="Rocket" className="text-cyan-400" size={24} />
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="https://cdn.poehali.dev/files/remixed_784b6e57c32c11f09c7ae6378db1d023_776274458_generation_0.jpg" alt="Sokol Logo" className="w-8 h-8 object-contain" />
             <span className="text-xl font-bold neon-glow text-cyan-400">СОКОЛ 2077</span>
           </div>
           <p className="text-gray-400">Детский технолагерь будущего</p>
