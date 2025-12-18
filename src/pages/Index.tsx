@@ -61,10 +61,10 @@ export default function Index() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img 
-                src="https://cdn.poehali.dev/files/remixed_784b6e57c32c11f09c7ae6378db1d023_776274458_generation_0.jpg" 
+                src="https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/fee3169a-025f-4c03-90ac-1541e791deeb.jpg" 
                 alt="Sokol Logo" 
-                className="w-12 h-12 object-contain brightness-0 invert" 
-                style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 15px #00f0ff)' }}
+                className="w-12 h-12 object-contain rounded-lg" 
+                style={{ filter: 'drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 15px #00f0ff)' }}
               />
               <h1 className="text-2xl font-bold neon-glow text-cyan-400">СОКОЛ</h1>
             </div>
@@ -300,10 +300,10 @@ export default function Index() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <img 
-              src="https://cdn.poehali.dev/files/remixed_784b6e57c32c11f09c7ae6378db1d023_776274458_generation_0.jpg" 
+              src="https://cdn.poehali.dev/projects/8d54aabd-14b8-40f1-8a0a-9b09bb9e3af4/files/fee3169a-025f-4c03-90ac-1541e791deeb.jpg" 
               alt="Sokol Logo" 
-              className="w-8 h-8 object-contain" 
-              style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px #00f0ff) drop-shadow(0 0 12px #00f0ff)' }}
+              className="w-8 h-8 object-contain rounded-lg" 
+              style={{ filter: 'drop-shadow(0 0 6px #00f0ff) drop-shadow(0 0 12px #00f0ff)' }}
             />
             <span className="text-xl font-bold neon-glow text-cyan-400">СОКОЛ 2077</span>
           </div>
