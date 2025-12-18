@@ -96,9 +96,7 @@ export default function Index() {
         />
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="glitch">
-            <h1 className="text-6xl md:text-8xl font-black mb-6 neon-glow text-cyan-400 animate-fade-in">
-              СОКОЛ 2077
-            </h1>
+            <h1 className="text-6xl md:text-8xl font-black mb-6 neon-glow text-cyan-400 animate-fade-in">СОКОЛ </h1>
           </div>
           <p className="text-xl md:text-3xl mb-8 text-purple-400 animate-fade-in font-light">
             Детский технолагерь будущего
