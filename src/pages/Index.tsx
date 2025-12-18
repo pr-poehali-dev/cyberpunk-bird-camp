@@ -8,11 +8,30 @@ import Icon from '@/components/ui/icon';
 export default function Index() {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const sections = document.querySelectorAll('[data-animate]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   const programs = [
@@ -130,9 +149,11 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="about" className="py-24 relative">
+      <section id="about" data-animate className="py-24 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 neon-glow text-cyan-400">
+          <h2 className={`text-5xl font-bold text-center mb-16 neon-glow text-cyan-400 transition-all duration-700 ${
+            visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             О ЛАГЕРЕ
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -143,7 +164,10 @@ export default function Index() {
             ].map((item, idx) => (
               <Card 
                 key={idx} 
-                className="bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1e] border-2 border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 hover:scale-105 neon-border"
+                className={`bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1e] border-2 border-cyan-500/30 hover:border-cyan-400 transition-all duration-700 hover:scale-105 neon-border ${
+                  visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${idx * 150}ms` }}
               >
                 <CardHeader>
                   <Icon name={item.icon} className="text-cyan-400 mb-4" size={48} />
@@ -158,16 +182,21 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="programs" className="py-24 relative bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+      <section id="programs" data-animate className="py-24 relative bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 neon-glow text-purple-400">
+          <h2 className={`text-5xl font-bold text-center mb-16 neon-glow text-purple-400 transition-all duration-700 ${
+            visibleSections.has('programs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             ПРОГРАММЫ ПО ВОЗРАСТАМ
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {programs.map((program, idx) => (
               <Card 
                 key={idx}
-                className="bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1e] border-2 border-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:scale-105 overflow-hidden group"
+                className={`bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1e] border-2 border-purple-500/30 hover:border-purple-400 transition-all duration-700 hover:scale-105 overflow-hidden group ${
+                  visibleSections.has('programs') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${idx * 150}ms` }}
               >
                 <div className={`h-2 bg-gradient-to-r ${program.color}`} />
                 <CardHeader>
@@ -196,16 +225,21 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="gallery" className="py-24 relative">
+      <section id="gallery" data-animate className="py-24 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 neon-glow text-cyan-400">
+          <h2 className={`text-5xl font-bold text-center mb-16 neon-glow text-cyan-400 transition-all duration-700 ${
+            visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             ГАЛЕРЕЯ
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {galleryImages.map((img, idx) => (
               <div 
                 key={idx}
-                className="relative group overflow-hidden rounded-lg border-2 border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 aspect-square cursor-pointer"
+                className={`relative group overflow-hidden rounded-lg border-2 border-cyan-500/30 hover:border-cyan-400 transition-all duration-700 aspect-square cursor-pointer ${
+                  visibleSections.has('gallery') ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+                style={{ transitionDelay: `${idx * 100}ms` }}
               >
                 <img 
                   src={img.image} 
@@ -223,12 +257,16 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="contacts" className="py-24 relative bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent">
+      <section id="contacts" data-animate className="py-24 relative bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 neon-glow text-cyan-400">
+          <h2 className={`text-5xl font-bold text-center mb-16 neon-glow text-cyan-400 transition-all duration-700 ${
+            visibleSections.has('contacts') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             КОНТАКТЫ
           </h2>
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+          <div className={`max-w-4xl mx-auto grid md:grid-cols-2 gap-8 transition-all duration-700 ${
+            visibleSections.has('contacts') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`} style={{ transitionDelay: '200ms' }}>
             <Card className="bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1e] border-2 border-cyan-500/30">
               <CardHeader>
                 <CardTitle className="text-2xl text-cyan-400">Свяжитесь с нами</CardTitle>
